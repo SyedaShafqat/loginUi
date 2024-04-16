@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .signup-container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+             /* Align content to the right */
+        }
+        .signup-container label {
+            display: block; /* Ensure each label is on its own line */
+            text-align: left; /* Align text inside label to the left */
+        }
+        .signup-form input[type="text"],
+        .signup-form input[type="email"],
+        .signup-form input[type="password"],
+        .signup-form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .signup-form button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .signup-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        {% if error_message %}
+        <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+        <form class="signup-form" method="post">
+            {% csrf_token %}
+            <input type="text" name="first_name" placeholder="First Name" required><br>
+            <input type="text" name="last_name" placeholder="Last Name" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="password" name="repeat_password" placeholder="Repeat Password" required><br>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label><br>
+            <label><input type="checkbox" name="privacy_policy"> I agree to the Privacy Policy</label><br>
+            <button type="submit">Sign Up</button>
+            <a href="{% url 'login' %}" class="login-button">Already have an account? Login</a>
+        </form>
+        <p>By creating an account you agree to our <a href="#">Terms</a>.</p>
+    </div>
+</body>
+</html>
